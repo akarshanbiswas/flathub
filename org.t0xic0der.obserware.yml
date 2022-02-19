@@ -10,8 +10,6 @@ finish-args:
     - --socket=fallback-x11
     - --socket=wayland
     - --device=dri
-    # To read the partitions
-    - --filesystem=host:ro
 
 modules:
    - python-packaging/python-packaging.json
