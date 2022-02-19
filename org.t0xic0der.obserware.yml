@@ -1,0 +1,36 @@
+id: org.t0xic0der.obserware
+default-branch: stable
+runtime: org.kde.Platform
+runtime-version: "5.15-21.08"
+sdk: org.kde.Sdk
+command: obserware
+finish-args:
+    - --share=ipc
+    - --share=network
+    - --socket=fallback-x11
+    - --socket=wayland
+    - --device=dri
+    # To read the partitions
+    - --filesystem=host:ro
+
+modules:
+   - python-packaging/python-packaging.json
+   - python-toml/python-toml.json
+   - pyqt5/pyqt5.json
+   - pyqtchart.yml
+   - generated-poetry-sources.json
+   - python3-poetry-core.json
+   
+   - name: obserware
+     buildsystem: simple
+     build-commands:
+        - pip3 install --verbose --prefix=${FLATPAK_DEST} --no-index --find-links=\\\"file://${PWD}\\\" --no-build-isolation .
+        - install -Dp -m 644 obserware/appdata/org.t0xic0der.obserware.metainfo.xml ${FLATPAK_DEST}/share/appdata/org.t0xic0der.obserware.appdata.xml
+        - install -Dp -m 644 obserware/appdata/org.t0xic0der.obserware.desktop ${FLATPAK_DEST}/share/applications/org.t0xic0der.obserware.desktop
+        - install -Dp -m 644 obserware/appdata/org.t0xic0der.obserware.png ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/org.t0xic0der.obserware.png
+     sources:
+        - type: git
+          url: https://gitlab.com/t0xic0der/obserware.git
+          tag: v0.2.8
+          commit: c827cb89eb6b9d75a7d44cfa402de926caafc859
+          #branch: main

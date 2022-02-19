@@ -1,0 +1,44 @@
+name: pyqtchart
+modules:
+  - name: PyQtChart_Qt5
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/24/b2/f2d34a4fcb2312fd3e9b80e92c742bdb18b87be1f84ae0c1e0dbcb716198/PyQtChart_Qt5-5.15.2-py3-none-manylinux2014_x86_64.whl
+        sha256: 2528a1e04f7eb05709a38c9086e5e284dd3bb6d37f3a4f73a1e9d16d8f84789c
+    buildsystem: simple
+    build-commands:
+      - pip3 install --no-index --no-build-isolation --prefix =$FLATPAK_DEST PyQtChart*.whl
+
+
+
+config-opts:
+  - --concatenate=1
+  - --verbose
+  - --api-dir=/app/share/qt/qsci/api/python
+  - --qmake-setting=QMAKE_CFLAGS_RELEASE='-I/usr/include/python_pyver/'
+  - --qmake-setting=QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python_pyver/'
+  - --target-dir=/app/lib/python_pyver/site-packages
+
+make-args:
+  - --directory=build
+make-install-args:
+  - --directory=build
+  
+
+
+cleanup: 
+  - /bin
+  
+sources:  
+  - type: archive
+    url: https://files.pythonhosted.org/packages/b3/14/a9fdca9b002f5bf01cf66f9854c65fd6b7ea12523e9e6ef063b0aba0e9e1/PyQtChart-5.15.5.tar.gz
+    sha256: e2cd55a8a72cef99bc0126f3b1daa914eb5f21e20a70127b6985299f1dc50107
+  - type: file
+    path: pyqt5/sip/sip-build-configure.in
+    dest-filename: configure
+    
+
+
+
+
+

@@ -1,0 +1,14 @@
+{
+    "name": "python-pyparsing",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pyparsing\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/ab/61/1a1613e3dcca483a7aa9d446cb4614e6425eb853b90db131c305bd9674cb/pyparsing-3.0.6.tar.gz",
+            "sha256": "d9bdec0013ef1eb5a84ab39a3b3868911598afa494f5faa038647101504e2b81"
+        }
+    ]
+}
